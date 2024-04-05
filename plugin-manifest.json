@@ -1,0 +1,19 @@
+{
+  "locale": [
+    "en"
+  ],
+  "service": "EXPENSE",
+  "whiteListedDomains": [],
+  "modules": {
+    "widgets": [
+      {
+        "location": "trip.creation.sidebar",
+        "name": "Expense Extension",
+        "url": "/app/widget.html",
+        "logo": "/app/img/expense-logo.png"
+      }
+    ]
+  },
+  "config": [],
+  "usedConnections": []
+}
