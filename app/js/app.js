@@ -42,6 +42,7 @@ function account_type_change()
     
     account_type_value = document.getElementById("account_type").value || '';
     submit_button2 = `<input type="submit" value="Submit" id="submit_button" onclick="update_account()">`
+    
     console.log(account_type_value)
    
     if(account_type_value === "Transferred to Authority")
@@ -136,13 +137,14 @@ function fileInput_onchange ()
   })
   setTimeout(() => {
     document.getElementById("submit_button").innerHTML = submit_button2 
-  }, 4000);
+  }, 3500);
 
        
 }
 
 function update_account()
 {
+    let close_button = `<input type="submit" value="Close" id="submit_button" onclick="onclose_button()">`
     account_type_value2 = document.getElementById("account_type").value;
     if(account_type_value2 === "Transferred to Authority")
     {
@@ -175,5 +177,18 @@ function update_account()
       ZOHO.CRM.API.updateRecord(config)
       .then(function(data){
           console.log(data)
-    })
+          setTimeout(() => {
+            alert("You have successfully transferred the account!")
+          }, 2000);
+    });
+    document.getElementById("submit_button").innerHTML = close_button 
+}
+
+function onclose_button()
+{
+    ZOHO.CRM.UI.Popup.close()
+   .then(function(data){
+      console.log("Close")
+      console.log(data)
+   })
 }
