@@ -137,7 +137,7 @@ function fileInput_onchange ()
   })
   setTimeout(() => {
     document.getElementById("submit_button").innerHTML = submit_button2 
-  }, 3500);
+  }, 5000);
 
        
 }
