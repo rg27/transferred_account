@@ -144,7 +144,7 @@ function fileInput_onchange ()
 
 function update_account()
 {
-    let close_button = `<input type="submit" value="Close" id="submit_button" onclick="onclose_button()">`
+    let close_button = `<input style="background-color:red;" type="submit" value="Close" id="submit_button" onclick="onclose_button()">`
     account_type_value2 = document.getElementById("account_type").value;
     if(account_type_value2 === "Transferred to Authority")
     {
@@ -176,10 +176,8 @@ function update_account()
       }
       ZOHO.CRM.API.updateRecord(config)
       .then(function(data){
-          console.log(data)
-          setTimeout(() => {
-            alert("You have successfully transferred the account!")
-          }, 2000);
+        console.log(data)
+        alert("You have successfully transferred the account!")
     });
     document.getElementById("submit_button").innerHTML = close_button 
 }
