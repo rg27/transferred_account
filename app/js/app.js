@@ -137,9 +137,7 @@ function fileInput_onchange ()
   })
   setTimeout(() => {
     document.getElementById("submit_button").innerHTML = submit_button2 
-  }, 5000);
-
-       
+  }, 7500);    
 }
 
 function update_account()
