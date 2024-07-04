@@ -60,6 +60,13 @@ function account_type_change()
         // document.getElementById("submit_button").innerHTML = submit_button2
         document.getElementById("submit_button").innerHTML = ""
     }
+    if(account_type_value === "Send Final Warning")
+    {
+        document.getElementById("trans_auth2").innerHTML = ""
+        document.getElementById("trans_id").innerHTML = ""
+        document.getElementById("trans_id2").innerHTML = ""
+        document.getElementById("submit_button").innerHTML = submit_button2
+    }
 }
 
 function reason_change()
