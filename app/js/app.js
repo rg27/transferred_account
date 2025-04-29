@@ -9,13 +9,37 @@ let doc_file_value;
 let account_file_id;
 let doc_file2 = "";
 let submit_button2 = ""
+let account_type;
 
-ZOHO.embeddedApp.on("PageLoad", entity => {
+function showPopup(message, type) {
+    const popup = document.getElementById("popup");
+    const messageElement = popup.querySelector("p");
+  
+    messageElement.innerHTML = message;
+    popupTitle.textContent = "";
+  
+    popup.classList.add(type);
+    popup.classList.remove("hidden");
+}
+
+function hidePopup() {
+    const popup = document.getElementById("popup"); 
+    popup.classList.add("hidden");
+  }
+
+ZOHO.embeddedApp.on("PageLoad", async (entity)  => {
     // This is the information about the current record, if applicable.
     console.log(entity)
     entity_id = entity.EntityId[0];
     console.log("Entity ID: " + entity_id)
-	console.log(entity_id);
+
+    const account_response = await ZOHO.CRM.API.getRecord({
+        Entity: "Accounts", approved: "both", RecordID: entity_id
+    });
+    const account_data = account_response.data[0];
+    account_type = account_data.Account_Type;
+    console.log("ACCOUNT TYPE: ", account_type);
+
 	//Custom Bussiness logic goes here
 })
 /*
@@ -66,6 +90,28 @@ function account_type_change()
         document.getElementById("trans_id").innerHTML = ""
         document.getElementById("trans_id2").innerHTML = ""
         document.getElementById("submit_button").innerHTML = submit_button2
+    }
+    if(account_type_value === "Send First Warning"){
+        const excludedTypes = [
+            "Cancelled",
+            "Transferred to Authority",
+            "Transferred to Competitor"
+          ];
+          
+        if (!excludedTypes.includes(account_type)) {
+            // const message = "YOU CAN PROCEED";
+            // showPopup(message, "success");
+            document.getElementById("trans_auth2").innerHTML = ""
+            document.getElementById("trans_id").innerHTML = ""
+            document.getElementById("trans_id2").innerHTML = ""
+            document.getElementById("submit_button").innerHTML = submit_button2
+            
+        } else {
+            const message = "Please make sure that the Account Type is not <strong>Cancelled</strong>, <strong>Transferred to Authority</strong>, or <strong>Transferred to Competitor</strong>.";
+
+            showPopup(message, "restricted");
+            document.getElementById("account_type").value = ""
+        }
     }
 }
 

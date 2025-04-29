@@ -15,6 +15,7 @@
             <option value="" disabled selected>Account Type</option>
             <option value="Transferred to Authority">Transferred to Authority</option>
             <option value="Transferred to Competitor">Transferred to Competitor</option>
+            <option value="Send First Warning">Send First Warning</option>
             <option value="Send Final Warning">Send Final Warning</option>
         </select>
         <div id="trans_auth2"></div>
@@ -24,7 +25,15 @@
         <div id="trans_id2">
         </div>
         <div id="timeline"></div>
-        
+
+        <div class="popup-overlay hidden" id="popup">
+            <div class="popup-content">
+                <button class="close-button" onclick="hidePopup()">&times;</button>
+              <h3 id="popupTitle">Action Status</h3>
+              <p id="popupMessage">Default message</p>
+            </div>
+        </div>
+          
         <!-- <label for="myFile">Upload TLZ NOC document</label>
         <input type="file" id="myFile" name="noc_document" placeholder="TLZ NOC document" required> -->
         <div id="submit_button"></div>
